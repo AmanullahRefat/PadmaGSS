@@ -167,20 +167,23 @@ const projectsData = [
 
 const blogPosts = [
     {
-        id: 1,
+        id: 1, 
         title: "GeoAI: Bridging Geography and Artificial Intelligence",
         date: "Latest",
         category: "GeoAI",
-        image: "https://placehold.co/600x400?text=GeoAI",
+        image: "https://placehold.co/800x500/2563eb/ffffff?text=GeoAI",
         summary: "An exploration of GeoAI, a powerful StoryMap that bridges the gap between geography and artificial intelligence.",
         content: `
             <p>GeoAI represents the synergy between Geographic Information Science (GIS) and Artificial Intelligence (AI). It leverages machine learning, deep learning, and data science techniques to analyze complex spatial data. This fusion allows for predictive modeling, pattern recognition, and automation in ways that were previously impossible.</p>
             <p class="mt-4">From predicting urban growth to analyzing traffic patterns in real-time, GeoAI is transforming how we understand our world. This article explores the core concepts of GeoAI and showcases practical applications that demonstrate its transformative power.</p>
             <div class="mt-6 text-center">
-                <a href="https://amanullahrefat.github.io/GeoAI/" target="_blank" class="inline-block bg-accent text-white font-bold py-2 px-6 rounded-lg hover:bg-opacity-90 transition">Explore the GeoAI Infograph</a>
+            <a href="https://amanullahrefat.github.io/GeoAI/" class="btn-primary py-3 px-8 rounded-full transform hover:scale-105">Explore the GeoAI Infograph</a>
+              
             </div>
-        `
+      
+      `
     },
+
     {
         id: 2, // or 'gis-visualization' depending on your other IDs
         title: "High-Precision Geospatial Data Visualization",
