@@ -1,0 +1,180 @@
+/* css/style.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css');
+
+/* CSS Variables for theming */
+:root {
+    --background: #f9fafb;
+    --surface: #ffffff;
+    --primary-text: #111827;
+    --secondary-text: #4b5563;
+    --accent: #3b82f6;
+    --accent-hover: #2563eb;
+    --border-color: #e5e7eb;
+    --shadow-color: rgba(0, 0, 0, 0.05);
+    --header-bg: rgba(255, 255, 255, 0.8);
+}
+
+html.theme-dark {
+    --background: #111827;
+    --surface: #1f2937;
+    --primary-text: #e5e7eb;
+    --secondary-text: #9ca3af;
+    --border-color: #374151;
+    --shadow-color: rgba(0, 0, 0, 0.2);
+    --header-bg: rgba(17, 24, 39, 0.8);
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    scroll-behavior: smooth;
+    background-color: var(--background);
+    color: var(--primary-text);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header {
+    background-color: var(--header-bg);
+    box-shadow: 0 4px 6px -1px var(--shadow-color);
+}
+.bg-surface { background-color: var(--surface); }
+.text-primary { color: var(--primary-text); }
+.text-secondary { color: var(--secondary-text); }
+.text-accent { color: var(--accent); }
+.border-custom { border-color: var(--border-color); }
+
+.card-hover, .bg-surface, .text-primary, .text-secondary, .filter-btn, .btn-primary, .btn-secondary {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease, transform 0.3s ease;
+}
+
+.btn-primary {
+    display: inline-block;
+    text-align: center;
+    background-color: var(--accent);
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-primary:hover {
+    background-color: var(--accent-hover);
+}
+
+.btn-secondary {
+    display: inline-block;
+    text-align: center;
+    background-color: transparent;
+    color: var(--accent);
+    border: 2px solid var(--accent);
+    font-weight: bold;
+    cursor: pointer;
+}
+.btn-secondary:hover {
+    background-color: var(--accent);
+    color: white;
+}
+
+.nav-link {
+    transition: color 0.3s ease;
+    position: relative;
+    padding-bottom: 4px;
+    color: var(--secondary-text);
+}
+.nav-link::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    bottom: 0;
+    left: 0;
+    background-color: var(--accent);
+    transition: width 0.3s ease;
+}
+.nav-link:hover, .nav-link.active {
+    color: var(--primary-text);
+}
+.nav-link.active::after {
+    width: 100%;
+}
+
+.hero-gradient {
+    background: linear-gradient(135deg, var(--background) 0%, var(--surface) 100%);
+}
+html.theme-dark .hero-gradient {
+     background: linear-gradient(135deg, #111827 0%, #1f2937 100%);
+}
+
+.section-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    color: var(--primary-text);
+}
+.section-subtitle {
+    font-size: 1.125rem;
+    color: var(--secondary-text);
+    max-width: 600px;
+    margin: 0 auto 3rem auto;
+}
+
+.card-hover:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px var(--shadow-color);
+}
+
+.reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.filter-btn {
+    background-color: var(--surface);
+    color: var(--secondary-text);
+    border: 1px solid var(--border-color);
+}
+.filter-btn:hover {
+    background-color: var(--border-color);
+    color: var(--primary-text);
+}
+.filter-btn.active {
+    background-color: var(--accent);
+    color: white;
+    border-color: var(--accent);
+}
+
+/* Theme Toggle */
+#theme-toggle {
+    position: relative;
+    width: 56px;
+    height: 32px;
+    border: none;
+    background: none;
+    padding: 0;
+    cursor: pointer;
+}
+.toggle-track {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background-color: #dbeafe;
+    border-radius: 30px;
+    transition: background-color 0.4s;
+}
+.toggle-thumb {
+    position: absolute;
+    height: 24px; width: 24px;
+    border-radius: 50%;
+    left: 4px; bottom: 4px;
+    background-color: #f59e0b;
+    transition: all 0.4s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    box-shadow: 0 0 5px #f59e0b;
+}
+html.theme-dark .toggle-track { background-color: #374151; }
+html.theme-dark .toggle-thumb {
+    transform: translateX(24px);
+    background-color: #e5e7eb;
+    box-shadow: inset -3px -2px 5px -2px rgba(255,255,255,0.2), inset -8px -3px 0 0 #dbeafe;
+}
