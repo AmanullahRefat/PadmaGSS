@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project Details | Padma GeoSpatial Solutions Ltd.</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <main>
+        <!-- The container ID MUST be 'project-detail-container' for main.js to work -->
+        <div id="project-detail-container" class="min-h-screen py-20 container mx-auto px-6">
+            <div class="text-center text-secondary">
+                <i class="fas fa-circle-notch fa-spin text-4xl text-accent"></i>
+                <p class="mt-4 text-xl">Loading project...</p>
+                <p class="text-sm mt-2 text-red-500">If this takes longer than 1 second, the backup script will run.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- Standard Scripts -->
+    <script src="js/layout.js"></script>
+    <script src="js/data.js"></script>
+    <script src="js/main.js"></script>
+
+    <!-- BACKUP ENGINE: Runs if main.js fails or page is opened directly -->
+    <script>
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                const container = document.getElementById('project-detail-container');
+                
+                // If the container still says "Loading...", main.js didn't work.
+                if (container && container.innerText.includes('Loading')) {
+                    console.warn("Main.js failed or delayed. Running Backup Engine.");
+
+                    // 1. Check for Data
+                    let safeProjects = [];
+                    if (typeof projectsData !== 'undefined') safeProjects = projectsData;
+                    else if (typeof projects !== 'undefined') safeProjects = projects;
+
+                    if (safeProjects.length === 0) {
+                        container.innerHTML = `<div class="text-center text-red-600 font-bold p-10">Error: Could not find project data in js/data.js</div>`;
+                        return;
+                    }
+
+                    // 2. Get Project ID (or default to the first one)
+                    const urlParams = new URLSearchParams(window.location.search);
+                    let projectId = urlParams.get('id');
+                    let project = null;
+
+                    if (projectId) {
+                        project = safeProjects.find(p => p.id == projectId);
+                    } else {
+                        // FALLBACK: Show the first project if no ID is found (for testing)
+                        project = safeProjects[0];
+                        console.log("No ID found in URL. Displaying first project as demo.");
+                    }
+
+                    // 3. Render
+                    if (project) {
+                        const catLabel = (typeof projectCategories !== 'undefined' && projectCategories[project.category]) 
+                            ? projectCategories[project.category] 
+                            : (project.category || 'Project');
+
+                        container.innerHTML = `
+                            <div class="mb-8 animate-fade-in">
+                                <div class="bg-yellow-100 border-l-4 border-yellow-500 text-yellow-700 p-4 mb-6" role="alert">
+                                    <p class="font-bold">Debug Mode</p>
+                                    <p>Showing project: <strong>${project.title}</strong>. (Backup Renderer)</p>
+                                </div>
+                                <a href="projects.html" class="text-secondary hover:text-accent flex items-center mb-4">
+                                    <i class="fas fa-arrow-left mr-2"></i> Back to Projects
+                                </a>
+                                <div class="grid lg:grid-cols-2 gap-12">
+                                    <div>
+                                        <img src="${project.image || 'https://placehold.co/600x400?text=No+Image'}" alt="${project.title}" class="w-full rounded-xl shadow-2xl mb-8">
+                                        <div class="bg-surface p-6 rounded-lg shadow-lg border border-custom">
+                                            <h3 class="font-bold text-lg text-primary mb-4 border-b border-custom pb-2">Project Facts</h3>
+                                            <ul class="space-y-4">
+                                                <li class="flex justify-between">
+                                                    <span class="text-secondary">Client</span>
+                                                    <span class="font-medium text-primary">${project.client || 'N/A'}</span>
+                                                </li>
+                                                <li class="flex justify-between">
+                                                    <span class="text-secondary">Location</span>
+                                                    <span class="font-medium text-primary">${project.location || 'N/A'}</span>
+                                                </li>
+                                                <li class="flex justify-between">
+                                                    <span class="text-secondary">Category</span>
+                                                    <span class="font-medium text-accent">${catLabel}</span>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h1 class="text-3xl md:text-5xl font-bold text-primary mb-6">${project.title}</h1>
+                                        <div class="prose max-w-none text-lg text-secondary leading-relaxed">
+                                            ${project.details || project.summary || 'No details available.'}
+                                        </div>
+                                        <div class="mt-12 pt-8 border-t border-custom">
+                                            <h3 class="text-xl font-bold text-primary mb-4">Interested in a similar project?</h3>
+                                            <a href="contact.html" class="btn-primary py-3 px-8 rounded-lg">Contact Us</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        `;
+                    } else {
+                        container.innerHTML = `<div class="text-center py-20 text-xl text-secondary">Project not found.</div>`;
+                    }
+                }
+            }, 500); // Wait 500ms for main.js to try first
+        });
+    </script>
+</body>
+</html>
