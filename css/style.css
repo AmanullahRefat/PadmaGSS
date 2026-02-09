@@ -73,12 +73,19 @@ header {
     color: white;
 }
 
+/* --- NAVIGATION MENU (Underline Animation + Bold Active) --- */
 .nav-link {
-    transition: color 0.3s ease;
-    position: relative;
-    padding-bottom: 4px;
+    font-family: 'Inter', sans-serif;
+    font-size: 1rem;
+    font-weight: 500;
     color: var(--secondary-text);
+    padding-bottom: 4px;
+    position: relative;
+    transition: color 0.3s ease;
+    text-decoration: none;
 }
+
+/* The Underline (Hidden by default) */
 .nav-link::after {
     content: '';
     position: absolute;
@@ -89,9 +96,22 @@ header {
     background-color: var(--accent);
     transition: width 0.3s ease;
 }
-.nav-link:hover, .nav-link.active {
-    color: var(--primary-text);
+
+/* Hover State */
+.nav-link:hover {
+    color: var(--accent); /* Changed to accent for better visibility */
 }
+.nav-link:hover::after {
+    width: 100%;
+}
+
+/* Active State (Current Page) */
+.nav-link.active {
+    color: var(--primary-text);
+    font-weight: 700; /* BOLD as requested */
+}
+
+/* Keep the underline fixed for the active page */
 .nav-link.active::after {
     width: 100%;
 }
@@ -131,21 +151,41 @@ html.theme-dark .hero-gradient {
     transform: translateY(0);
 }
 
+/* UPDATED: Filter Buttons (Pill Style) */
 .filter-btn {
     background-color: var(--surface);
     color: var(--secondary-text);
     border: 1px solid var(--border-color);
+    border-radius: 9999px; /* This makes it a Pill */
+    padding: 0.6rem 1.8rem; /* Wider padding for better look */
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
 }
+
 .filter-btn:hover {
     background-color: var(--border-color);
     color: var(--primary-text);
+    transform: translateY(-2px); /* Slight lift effect */
 }
+
 .filter-btn.active {
     background-color: var(--accent);
     color: white;
     border-color: var(--accent);
+    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3); /* Glow effect */
 }
-
+/* Mobile Dropdown Styling */
+.mobile-filter-select {
+    background-color: var(--surface);
+    color: var(--primary-text);
+    border: 1px solid var(--border-color);
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 0.5rem center;
+    background-repeat: no-repeat;
+    background-size: 1.5em 1.5em;
+    padding-right: 2.5rem;
+}
 /* Theme Toggle */
 #theme-toggle {
     position: relative;
