@@ -2,50 +2,61 @@
 
 /**
  * GLOBAL HELPER: Social Sharing Logic
- * Includes a safety check for "Localhost/File" mode to prevent broken UX.
+ * UPDATED: Now opens in a New Tab (better for Mobile Apps) instead of a Popup.
  */
 window.shareToSocial = function(platform) {
     // 1. DETECT LOCAL ENVIRONMENT
+    // If you are opening the file directly (file://) or localhost, sharing won't work perfectly.
     const isLocal = window.location.protocol === 'file:' || 
                     window.location.hostname === 'localhost' || 
                     window.location.hostname === '127.0.0.1';
 
-    // 2. UX HANDLER FOR LOCAL TESTING
     if (isLocal) {
-        alert("Developer Note: Social sharing requires a live public website (e.g., .com) to generate previews. This feature will work automatically once you publish your site.");
-        return; // Stop here so we don't open the broken window
+        alert("Developer Note: Social sharing requires a live public website to generate previews.");
+        return; 
     }
 
-    // 3. PRODUCTION LOGIC
+    // 2. PREPARE DATA
     const url = encodeURIComponent(window.location.href);
     const title = encodeURIComponent(document.title);
     let shareUrl = '';
 
+    // 3. GENERATE URLS
     if (platform === 'facebook') {
+        // This is the standard web sharer. 
+        // On mobile, opening this in a new tab often triggers the OS to ask "Open in Facebook?"
         shareUrl = `https://www.facebook.com/sharer/sharer.php?u=${url}`;
     } else if (platform === 'twitter') {
+        // Twitter Intent URL
         shareUrl = `https://twitter.com/intent/tweet?url=${url}&text=${title}`;
     } else if (platform === 'linkedin') {
+        // LinkedIn Sharing
         shareUrl = `https://www.linkedin.com/sharing/share-offsite/?url=${url}`;
     }
 
+    // 4. OPEN IN NEW TAB (Best UX)
+    // We removed 'width=600,height=400'. 
+    // Passing '_blank' without dimensions forces a new Tab on Desktop 
+    // and a full browser view on Mobile (which allows Deep Linking to Apps).
     if (shareUrl) {
-        window.open(shareUrl, '_blank', 'width=600,height=400');
+        window.open(shareUrl, '_blank', 'noopener,noreferrer');
     }
 };
 
 /**
  * GLOBAL HELPER: Copy to Clipboard
- * This provides immediate feedback and works everywhere.
  */
 window.copyLink = function(btn) {
     navigator.clipboard.writeText(window.location.href).then(() => {
-        // Visual Feedback: Change icon to checkmark temporarily
+        // Visual Feedback
         const originalContent = btn.innerHTML;
+        // Change to checkmark
         btn.innerHTML = '<i class="fas fa-check"></i>';
+        // Add Green styling
+        btn.classList.remove('bg-gray-200', 'text-gray-600'); 
         btn.classList.add('bg-green-500', 'text-white');
-        btn.classList.remove('bg-gray-200', 'text-gray-600');
         
+        // Revert after 2 seconds
         setTimeout(() => {
             btn.innerHTML = originalContent;
             btn.classList.remove('bg-green-500', 'text-white');
@@ -73,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================
-    // 1. PROJECT LIST PAGE (AUTOMATED)
+    // 1. PROJECT LIST PAGE
     // =========================================
     const projectList = document.getElementById('project-list');
     const projectFilters = document.getElementById('project-filters');
@@ -91,14 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const pMobileSelect = document.createElement('select');
         pMobileSelect.className = 'mobile-filter-select w-full p-3 rounded-full appearance-none shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500';
 
-        // --- AUTOMATED PROJECT CATEGORIES ---
         const autoProjCats = { 'all': 'All Projects' };
 
         safeProjects.forEach(project => {
             if (project.category) {
                 const rawCat = project.category;
                 const key = rawCat.toLowerCase();
-                
                 if (!autoProjCats[key]) {
                     let label = rawCat;
                     if (typeof projectCategories !== 'undefined' && projectCategories[key]) {
@@ -155,9 +164,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 let cleanSummary = project.summary;
                 if (!cleanSummary && project.details) {
                     cleanSummary = project.details.replace(/<[^>]*>?/gm, '').substring(0, 100) + '...';
-                } else if (!cleanSummary) {
-                    cleanSummary = '';
-                }
+                } else if (!cleanSummary) cleanSummary = '';
 
                 const catLabel = autoProjCats[(project.category || '').toLowerCase()] || project.category;
 
@@ -258,7 +265,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
     // =========================================
-    // 3. BLOG LIST PAGE (AUTOMATED)
+    // 3. BLOG LIST PAGE
     // =========================================
     const blogList = document.getElementById('blog-list');
     const blogFilters = document.getElementById('blog-filters');
@@ -422,7 +429,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // --- SHARED HELPER FOR ACTIVE STATE ---
     function updateActiveState(container, activeCategory, mobileSelect) {
         if(mobileSelect) mobileSelect.value = activeCategory;
         const btns = container.querySelectorAll('.filter-btn');
