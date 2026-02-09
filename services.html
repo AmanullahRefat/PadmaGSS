@@ -4,10 +4,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services | Padma Geospatial Solutions Ltd.</title>
+    
     <script src="https://cdn.tailwindcss.com"></script>
+    
+    <script>
+        tailwind.config = {
+            darkMode: 'class', // This tells Tailwind to look for class="dark" on the HTML tag
+            theme: {
+                extend: {
+                    // This ensures Tailwind respects your custom CSS variables if needed
+                    colors: {
+                        surface: 'var(--surface-color)',
+                        background: 'var(--bg-color)',
+                        primary: 'var(--text-primary)',
+                        secondary: 'var(--text-secondary)',
+                        accent: 'var(--accent-color)',
+                    }
+                }
+            }
+        }
+    </script>
+
     <link rel="icon" type="image/png" href="images/favicon.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    
+    <div id="header-placeholder"></div>
+
     <main>
         <section class="py-20 container mx-auto px-6">
             <div class="text-center">
@@ -82,55 +107,169 @@
                     </ul>
                 </div>
             </div>
+        </section>
 
-            <div class="mt-20">
-                <div class="text-center">
+        <section class="py-20 bg-background">
+            <div class="container mx-auto px-6">
+                <div class="text-center mb-16">
                     <h2 class="section-title reveal">Service Packages</h2>
                     <p class="section-subtitle reveal">
-                        We offer flexible packages to suit your project's scale and budget.
+                        Flexible engagement models tailored to your project scale and complexity.
                     </p>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mt-12">
-                    <div class="bg-surface rounded-lg p-8 flex flex-col card-hover reveal shadow-lg">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Starter</h3>
-                        <p class="text-secondary mb-4">Ideal for students, researchers, and small-scale projects.</p>
-                        <p class="text-4xl font-bold my-4 text-primary">Starts at <span class="text-accent">৳15,000</span></p>
-                        <ul class="space-y-3 text-primary flex-grow">
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>High-Quality Study Area Map</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Basic Data Collection</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Standard Geoprocessing</li>
+
+                <div class="grid md:grid-cols-3 gap-8 max-w-7xl mx-auto align-stretch pt-12">
+                    
+                    <div class="bg-surface rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 reveal flex flex-col border border-transparent hover:border-gray-200">
+                        <div class="mb-6">
+                            <span class="bg-gray-100 text-gray-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Basic</span>
+                            <h3 class="text-2xl font-bold text-primary mt-4">Geospatial Essentials</h3>
+                            <p class="text-secondary text-sm mt-2">Perfect for academic research, simple visualizations, and data preparation.</p>
+                        </div>
+                        <div class="text-3xl font-bold text-primary mb-6">On Demand</div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>Static Map Production (2D)</span>
+                            </li>
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>Data Digitization & Cleaning</span>
+                            </li>
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>Basic Spatial Statistics</span>
+                            </li>
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-green-500 mt-1 mr-3"></i>
+                                <span>File Format Conversion</span>
+                            </li>
                         </ul>
-                        <a href="contact.html" class="btn-secondary py-3 px-6 rounded-full mt-8">Get a Quote</a>
+                        <a href="contact.html?subject=Essentials" class="w-full block text-center border-2 border-accent text-accent font-bold py-3 rounded-xl hover:bg-accent hover:text-white transition-colors">
+                            Request Service
+                        </a>
                     </div>
-                    <div class="bg-surface rounded-lg p-8 flex flex-col card-hover reveal border-2 border-accent shadow-lg" style="transition-delay: 0.2s;">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Professional</h3>
-                        <p class="text-secondary mb-4">Perfect for businesses, NGOs, and detailed analytical reports.</p>
-                        <p class="text-4xl font-bold my-4 text-primary">Starts at <span class="text-accent">৳50,000</span></p>
-                        <ul class="space-y-3 text-primary flex-grow">
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Everything in Starter, plus:</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>LULC Classification</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Custom Web Map</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Detailed Spatial Analysis</li>
+
+                    <div class="bg-surface rounded-2xl p-8 shadow-2xl scale-105 relative border-2 border-accent reveal flex flex-col overflow-visible" style="z-index: 10;">
+                        
+                        <div class="absolute -top-0 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-50 w-max">
+                            <span class="bg-blue-600 text-white px-6 py-2 rounded-full text-sm font-bold shadow-lg uppercase tracking-wide border-4 border-surface">
+                                Most Popular
+                            </span>
+                        </div>
+                        
+                        <div class="mb-6 mt-4"> 
+                            <span class="bg-blue-100 text-blue-800 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Professional</span>
+                            <h3 class="text-2xl font-bold text-primary mt-4">Analytical Insights</h3>
+                            <p class="text-secondary text-sm mt-2">Comprehensive analysis for EIA, urban planning, and feasibility studies.</p>
+                        </div>
+                        
+                        <div class="text-3xl font-bold text-primary mb-6">Project Based</div>
+                        
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            <li class="flex items-start text-primary font-medium">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                                <span>Advanced Suitability Analysis</span>
+                            </li>
+                            <li class="flex items-start text-primary font-medium">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                                <span>Satellite Imagery Classification</span>
+                            </li>
+                            <li class="flex items-start text-primary font-medium">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                                <span>Hydrological & Flood Modeling</span>
+                            </li>
+                            <li class="flex items-start text-primary font-medium">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                                <span>3D Terrain Visualization</span>
+                            </li>
+                            <li class="flex items-start text-primary font-medium">
+                                <i class="fas fa-check-circle text-accent mt-1 mr-3"></i>
+                                <span>Technical Report Writing</span>
+                            </li>
                         </ul>
-                        <a href="contact.html" class="btn-primary py-3 px-6 rounded-full mt-8">Get a Quote</a>
+                        
+                        <a href="contact.html?subject=Professional" class="w-full block text-center btn-primary py-4 rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1">
+                            Get a Quote
+                        </a>
                     </div>
-                    <div class="bg-surface rounded-lg p-8 flex flex-col card-hover reveal shadow-lg" style="transition-delay: 0.4s;">
-                        <h3 class="text-2xl font-bold text-primary mb-2">Enterprise</h3>
-                        <p class="text-secondary mb-4">For large-scale projects and custom application development.</p>
-                        <p class="text-4xl font-bold my-4 text-primary">Custom Quote</p>
-                        <ul class="space-y-3 text-primary flex-grow">
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Everything in Professional, plus:</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Custom Web GIS Application</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Advanced Modeling</li>
-                            <li class="flex items-start"><i class="fas fa-check-circle text-green-500 mr-3 mt-1"></i>Dedicated Support</li>
+
+                    <div class="bg-surface rounded-2xl p-8 shadow-lg hover:shadow-xl transition-all duration-300 reveal flex flex-col border border-transparent hover:border-gray-200">
+                        <div class="mb-6">
+                            <span class="bg-purple-100 text-purple-600 px-4 py-1 rounded-full text-xs font-bold uppercase tracking-wider">Enterprise</span>
+                            <h3 class="text-2xl font-bold text-primary mt-4">Custom Solutions</h3>
+                            <p class="text-secondary text-sm mt-2">End-to-end development, Web GIS, and long-term consultancy.</p>
+                        </div>
+                        <div class="text-3xl font-bold text-primary mb-6">Custom</div>
+                        <ul class="space-y-4 mb-8 flex-grow">
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-purple-500 mt-1 mr-3"></i>
+                                <span>Interactive Web GIS Portals</span>
+                            </li>
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-purple-500 mt-1 mr-3"></i>
+                                <span>Drone Survey & Processing</span>
+                            </li>
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-purple-500 mt-1 mr-3"></i>
+                                <span>Database Design (PostGIS)</span>
+                            </li>
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-purple-500 mt-1 mr-3"></i>
+                                <span>Automated Python/R Scripts</span>
+                            </li>
+                            <li class="flex items-start text-secondary">
+                                <i class="fas fa-check text-purple-500 mt-1 mr-3"></i>
+                                <span>Dedicated Support Team</span>
+                            </li>
                         </ul>
-                         <a href="contact.html" class="btn-secondary py-3 px-6 rounded-full mt-8">Get a Quote</a>
+                        <a href="contact.html?subject=Enterprise" class="w-full block text-center border-2 border-primary text-primary font-bold py-3 rounded-xl hover:bg-primary hover:text-white transition-colors">
+                            Contact Sales
+                        </a>
+                    </div>
+                </div>
+                
+                <div class="mt-20 grid md:grid-cols-2 gap-12 items-center reveal">
+                    <div>
+                        <h3 class="text-2xl font-bold text-primary mb-4">Why choose our packages?</h3>
+                        <p class="text-secondary mb-6">
+                            Unlike generic data firms, we combine <strong class="text-accent">academic rigor</strong> with <strong class="text-accent">industry speed</strong>. We ensure every dataset is topology-corrected and every analysis is scientifically valid.
+                        </p>
+                        <div class="flex gap-4">
+                            <div class="bg-surface p-4 rounded-lg shadow-sm border-l-4 border-accent">
+                                <div class="font-bold text-primary">99% Accuracy</div>
+                                <div class="text-sm text-secondary">Quality Assurance</div>
+                            </div>
+                            <div class="bg-surface p-4 rounded-lg shadow-sm border-l-4 border-green-500">
+                                <div class="font-bold text-primary">24/7 Support</div>
+                                <div class="text-sm text-secondary">For Enterprise Clients</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-blue-70 dark:bg-gray-900 p-8 rounded-2xl border border-blue-100 dark:border-gray-800 transition-colors duration-300">
+                         
+                        <h3 class="text-2xl font-bold text-primary mb-4">
+                            Unsure which one fits you?
+                        </h3>
+                        
+                        <p class="text-secondary mb-6">
+                            We offer a free 15-minute discovery call to assess your data needs. No obligation, just expert advice.
+                        </p>
+                        
+                        <a href="contact.html" class="inline-flex items-center font-bold text-accent hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                            Book a Free Consultation <i class="fas fa-arrow-right ml-2"></i>
+                        </a>
                     </div>
                 </div>
             </div>
         </section>
     </main>
-    <script src="js/layout.js"></script>
-</body>
 
+    <div id="footer-placeholder"></div>
+
+    <script src="js/data.js"></script>
+    <script src="js/layout.js"></script>
+    <script src="js/main.js"></script>
+</body>
 </html>
