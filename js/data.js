@@ -163,11 +163,21 @@ const projectsData = [
             </div>
         ` 
     },
+     {
+        id: 'UrbanRegeneration',
+        category: 'gis',
+        title: 'Gender Based Perceptions about Urban Regeneration in Dhaka',
+        client: 'Individual Researcher',
+        location: 'Dhaka',
+        image: 'https://placehold.co/600x400/3B82F6/FFFFFF?text=Urban+Regeneration',
+        details: `In our project on 'Gender Based Perceptions about Urban Regeneration in Dhaka,' we conducted an in-depth analysis to understand how gender based perceptions and knowledge varies. Using advanced Analytical techniques, , we visualize the flow of information and resources among different gender.<br>`
+    },
 ];
+
 
 const blogPosts = [
     {
-        id: 1, 
+       // id: 1, 
         title: "GeoAI: Bridging Geography and Artificial Intelligence",
         date: "Latest",
         category: "GeoAI",
@@ -185,7 +195,7 @@ const blogPosts = [
     },
 
     {
-        id: 2, // or 'gis-visualization' depending on your other IDs
+      //  id: 2, // or 'gis-visualization' depending on your other IDs
         title: "High-Precision Geospatial Data Visualization",
         date: "March 2024",
         category: "GIS Mapping & Analysis",
@@ -237,7 +247,7 @@ const blogPosts = [
         `
     },
     {
-        id: 3, 
+       // id: 3, 
         title: "Advanced Spatial Modeling for EIA",
         date: "February 2024",
         category: "GIS Mapping & Analysis",
@@ -308,7 +318,7 @@ const blogPosts = [
         `
     },
     {
-        id: 4,
+      //  id: 4,
         title: "Interactive Web GIS Dashboards",
         date: "January 2024",
         category: "Web GIS & Dashboard Development",
@@ -352,7 +362,7 @@ const blogPosts = [
         `
     },
     {
-        id: 5,
+       // id: 5,
         title: "The Evolution of Spatial Data Visualization",
         date: "December 2023",
         category: "Web GIS & Dashboard Development",
@@ -403,7 +413,7 @@ const blogPosts = [
         `
     },
     {
-        id: 6,
+      //  id: 6,
         title: "The Role of Drones in Modern Surveying",
         date: "Latest",
         category: "Survey & Data Collection",
@@ -415,7 +425,7 @@ const blogPosts = [
         `
     },
     {
-        id: 7,
+      //  id: 7,
         title: "AI and Machine Learning in Geospatial Analysis",
         date: "Latest",
         category: "Contemporary GIS & RS Issues",
@@ -427,7 +437,7 @@ const blogPosts = [
         `
     },
     {
-        id: 8,
+        //id: 8,
         title: "Understanding Coastal Zone Management",
         date: "Latest",
         category: "Miscellaneous",
