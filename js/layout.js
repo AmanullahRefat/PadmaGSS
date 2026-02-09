@@ -49,7 +49,7 @@ const footerHTML = `
          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 mb-6">
             <div>
                 <h3 class="text-lg font-semibold mb-4">Padma GeoSpatial Solutions Ltd.</h3>
-                <p class="text-secondary">Transforming spatial data into actionable intelligence for engineering and development.</p>
+                <p class="text-secondary">We believe accurate data is the foundation of a better world. We take the complexity out of geospatial science to give you the clarity you need to plan, build, and protect.</p>
             </div>
             <div>
                 <h3 class="text-lg font-semibold mb-4">Quick Links</h3>
